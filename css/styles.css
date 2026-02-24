@@ -1386,6 +1386,8 @@ p:last-child {
   text-align: center;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-team-image {
@@ -1407,6 +1409,15 @@ p:last-child {
 
 .card-team-content {
   padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-team-content::before {
+  content: '';
+  flex: 1;
 }
 
 .card-team h4 {
@@ -1417,6 +1428,7 @@ p:last-child {
   color: var(--gray-500);
   font-size: var(--text-sm);
   margin-bottom: var(--space-4);
+  flex: 1;
 }
 
 .card-team-bio {
@@ -2115,6 +2127,53 @@ p:last-child {
   padding: var(--space-8) var(--space-8);
   max-width: 700px;
   margin: 0 auto;
+}
+
+/* CTA Two-Column Layout (calendar + copy) */
+.cta-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.cta-calendar {
+  background: #fff;
+  border-radius: 12px;
+  overflow-y: auto;
+  max-height: 350px;
+}
+
+.cta-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.cta-copy .heading-emphasis {
+  margin-bottom: var(--space-6);
+}
+
+.cta-copy .cta-subtext {
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 968px) {
+  .cta-two-col {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .cta-copy {
+    order: -1;
+  }
+
+  .cta-calendar {
+    min-height: 450px;
+  }
 }
 
 .cta-decoration {

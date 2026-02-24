@@ -660,7 +660,7 @@ function initExitIntentPopup() {
         <p>Schedule a no-pressure, free consultation with our team.</p>
 
         <div class="exit-popup-actions">
-          <a href="https://highridgeadvisory.as.me/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book a Free Consultation</a>
+          <a href="#" data-booking class="btn btn-primary">Book a Free Consultation</a>
           <button class="btn btn-ghost exit-popup-dismiss">Maybe Later</button>
         </div>
       </div>

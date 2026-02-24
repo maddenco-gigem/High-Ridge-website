@@ -153,7 +153,7 @@
           <span>972.632.5700</span>
         </a>
 
-        <a href="https://highridgeadvisory.as.me/" class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">Book a Meeting</a>
+        <a href="#" data-booking class="btn btn-primary nav-cta">Book a Meeting</a>
       </nav>
 
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -166,12 +166,12 @@
 
   <main id="main-content">
     <!-- Hero Section -->
-    <section class="hero hero--left" style="background-image: url('images/hero-bg.webp');">
+    <section class="hero hero--left" style="background-image: url('images/about-hero.webp');">
       <div class="hero-content">
         <h1><span class="hero-headline">A Higher Standard of</span><br><span class="typewriter" id="typewriter"></span><span class="typewriter-cursor">|</span></h1>
         <p class="hero-subtitle">Fiduciary guidance for families<br>and businesses who value<br>clarity, integrity, and results.</p>
         <div class="hero-cta">
-          <a href="https://highridgeadvisory.as.me/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Schedule a Consultation</a>
+          <a href="#" data-booking class="btn btn-ghost">Schedule a Consultation</a>
         </div>
       </div>
       <a href="#intro" class="scroll-indicator" aria-label="Scroll to content">
@@ -281,20 +281,28 @@
     <!-- CTA Banner -->
     <section class="section section--navy cta-section">
       <div class="container">
-        <div class="cta-enhanced" data-animate="fade-in-up">
-          <h2 class="heading-emphasis">Ready to Take<br>the Next Step?</h2>
-          <p class="cta-subtext">Schedule a complimentary consultation to discuss your financial goals.</p>
-          <div class="booking-urgency">
-            <span class="booking-urgency-dot"></span>
-            <span>Now scheduling for <span class="booking-urgency-month"></span></span>
+        <div class="cta-two-col" data-animate="fade-in-up">
+          <div class="cta-calendar">
+            <div class="tidycal-embed" data-path="high-ridge-advisory/initial-consultation"></div>
           </div>
-          <a href="https://highridgeadvisory.as.me/" class="btn btn-gold" target="_blank" rel="noopener noreferrer">Book Your Consultation</a>
-          <div class="cta-decoration cta-decoration--bottom">
-            <span></span><span></span><span></span><span></span><span></span>
+          <div class="cta-copy">
+            <div class="cta-decoration">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <h2 class="heading-emphasis">Ready to Take<br>the Next Step?</h2>
+            <p class="cta-subtext">Schedule a complimentary consultation to discuss your financial goals.</p>
+            <div class="booking-urgency">
+              <span class="booking-urgency-dot"></span>
+              <span>Now scheduling for <span class="booking-urgency-month"></span></span>
+            </div>
+            <div class="cta-decoration cta-decoration--bottom">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
           </div>
         </div>
       </div>
     </section>
+    <script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
 
     <!-- Contact Preview Section -->
     <section class="section section--gray">
@@ -353,7 +361,7 @@
                  height="100">
           </div>
           <p>Boutique wealth management Providing fiduciary financial guidance to families and businesses since 1997.</p>
-          <a href="https://highridgeadvisory.as.me/" class="btn btn-ghost btn-small" target="_blank" rel="noopener noreferrer">Book a Consultation</a>
+          <a href="#" data-booking class="btn btn-ghost btn-small">Book a Consultation</a>
           <div class="footer-social">
             <a href="https://www.linkedin.com/in/james-madden-jr-71b70912" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -421,5 +429,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/booking-modal.js"></script>
 </body>
 </html>
