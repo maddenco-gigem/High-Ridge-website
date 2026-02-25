@@ -659,8 +659,10 @@ function initExitIntentPopup() {
         <h3 id="exit-popup-title">Before You Go...</h3>
         <p>Schedule a no-pressure, free consultation with our team.</p>
 
+        <div class="exit-popup-calendar">
+          <div class="tidycal-embed" data-path="high-ridge-advisory/initial-consultation"></div>
+        </div>
         <div class="exit-popup-actions">
-          <a href="#" data-booking class="btn btn-primary">Book a Free Consultation</a>
           <button class="btn btn-ghost exit-popup-dismiss">Maybe Later</button>
         </div>
       </div>
@@ -681,6 +683,14 @@ function initExitIntentPopup() {
     sessionStorage.setItem('exitPopupShown', 'true');
     popup.classList.add('is-visible');
     document.body.style.overflow = 'hidden';
+
+    // Load TidyCal embed.js if not already on the page
+    if (!document.querySelector('script[src*="tidycal"]')) {
+      var s = document.createElement('script');
+      s.src = 'https://asset-tidycal.b-cdn.net/js/embed.js';
+      s.async = true;
+      document.body.appendChild(s);
+    }
   }
 
   function hidePopup() {

@@ -2674,12 +2674,19 @@ button[type="submit"] .btn-spinner + span {
   background: var(--white);
   border-radius: var(--radius-xl);
   padding: var(--space-10) var(--space-8);
-  max-width: 480px;
+  max-width: 620px;
   width: 100%;
   text-align: center;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   transform: scale(0.9) translateY(20px);
   transition: transform var(--duration-normal) var(--ease-out-cubic);
+}
+
+.exit-popup-calendar {
+  max-height: 350px;
+  overflow-y: auto;
+  border-radius: 8px;
+  margin-bottom: var(--space-4);
 }
 
 .exit-popup.is-visible .exit-popup-content {
