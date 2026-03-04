@@ -20,3 +20,6 @@ node_modules/
 .env
 .env.local
 .env.production
+
+# Compliance screenshot captures
+compliance-pdfs/
