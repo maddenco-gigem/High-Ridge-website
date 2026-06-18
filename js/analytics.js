@@ -11,7 +11,17 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 
-// Set default consent to denied
+// ----------------------------------------
+// Consent state — opt-out model (US / Texas)
+// ----------------------------------------
+// Analytics + advertising default ON. Visitors opt out via the floating cookie
+// icon or the footer "Cookie Preferences" link. An explicit choice stored in
+// localStorage always wins; absent a choice, a Global Privacy Control (GPC)
+// browser signal is honored as an opt-out, otherwise consent defaults to granted.
+var COOKIE_CONSENT_KEY = 'cookie_consent';    // 'granted' | 'denied' (explicit choice)
+var COOKIE_NOTICE_KEY = 'cookie_notice_seen'; // 'true' once first-visit notice dismissed
+
+// Consent Mode default — denied for the few ms before we resolve and update.
 gtag('consent', 'default', {
   'analytics_storage': 'denied',
   'ad_storage': 'denied',
@@ -19,101 +29,178 @@ gtag('consent', 'default', {
   'ad_personalization': 'denied'
 });
 
-// Check for existing consent on page load
-if (localStorage.getItem('cookie_consent') === 'accepted') {
+function cookieHasExplicitChoice() {
+  var v = localStorage.getItem(COOKIE_CONSENT_KEY);
+  return v === 'granted' || v === 'denied';
+}
+
+function cookieResolveConsent() {
+  var explicit = localStorage.getItem(COOKIE_CONSENT_KEY);
+  if (explicit === 'granted' || explicit === 'denied') return explicit;
+  if (navigator.globalPrivacyControl === true) return 'denied'; // honor GPC opt-out
+  return 'granted'; // opt-out default: on unless the visitor opts out
+}
+
+function cookieApplyConsent(state) {
+  var granted = state === 'granted';
   gtag('consent', 'update', {
-    'analytics_storage': 'granted'
+    'analytics_storage': granted ? 'granted' : 'denied',
+    'ad_storage': granted ? 'granted' : 'denied',
+    'ad_user_data': granted ? 'granted' : 'denied',
+    'ad_personalization': granted ? 'granted' : 'denied'
   });
 }
 
-// ----------------------------------------
-// Cookie Consent Banner
-// ----------------------------------------
-document.addEventListener('DOMContentLoaded', function() {
-  initCookieConsent();
-});
+// Resolve and apply consent immediately on load.
+cookieApplyConsent(cookieResolveConsent());
 
-function initCookieConsent() {
-  // Check if user has already made a choice
-  const existingConsent = localStorage.getItem('cookie_consent');
-  if (existingConsent) {
-    return; // Don't show banner if choice already made
+// ----------------------------------------
+// Cookie Preferences UI — floating icon + panel + first-visit notice
+// ----------------------------------------
+function cookieSetConsent(state) {
+  localStorage.setItem(COOKIE_CONSENT_KEY, state);
+  localStorage.setItem(COOKIE_NOTICE_KEY, 'true');
+  cookieApplyConsent(state);
+  gtag('event', 'cookie_consent', { 'event_category': 'consent', 'event_label': state });
+  cookieSyncToggle();
+}
+
+function cookieSyncToggle() {
+  var toggle = document.getElementById('cookieToggleAA');
+  if (toggle) toggle.checked = cookieResolveConsent() === 'granted';
+}
+
+function openCookiePanel(e) {
+  if (e) e.stopPropagation();
+  var panel = document.getElementById('cookiePanel');
+  var fab = document.getElementById('cookieFab');
+  if (!panel) return;
+  cookieSyncToggle();
+  panel.classList.add('is-open');
+  panel.setAttribute('aria-hidden', 'false');
+  if (fab) fab.setAttribute('aria-expanded', 'true');
+  dismissCookieNotice();
+}
+
+function closeCookiePanel() {
+  var panel = document.getElementById('cookiePanel');
+  var fab = document.getElementById('cookieFab');
+  if (!panel) return;
+  panel.classList.remove('is-open');
+  panel.setAttribute('aria-hidden', 'true');
+  if (fab) fab.setAttribute('aria-expanded', 'false');
+}
+
+function dismissCookieNotice() {
+  var notice = document.getElementById('cookieNotice');
+  if (!notice) return;
+  localStorage.setItem(COOKIE_NOTICE_KEY, 'true');
+  notice.classList.remove('show');
+  setTimeout(function() { if (notice.parentNode) notice.parentNode.removeChild(notice); }, 300);
+}
+
+function showCookieNotice() {
+  var notice = document.createElement('div');
+  notice.id = 'cookieNotice';
+  notice.className = 'cookie-notice';
+  notice.setAttribute('role', 'region');
+  notice.setAttribute('aria-label', 'Cookie notice');
+  notice.innerHTML =
+    '<p>We use cookies for analytics and advertising. You can opt out anytime.</p>' +
+    '<div class="cookie-notice-actions">' +
+      '<button type="button" class="cookie-link-btn" id="cookieNoticeManage">Manage</button>' +
+      '<button type="button" class="cookie-btn cookie-btn-primary" id="cookieNoticeGotIt">Got it</button>' +
+    '</div>';
+  document.body.appendChild(notice);
+  requestAnimationFrame(function() { notice.classList.add('show'); });
+  document.getElementById('cookieNoticeManage').addEventListener('click', openCookiePanel);
+  document.getElementById('cookieNoticeGotIt').addEventListener('click', function(e) {
+    e.stopPropagation();
+    dismissCookieNotice();
+  });
+}
+
+function buildCookieUI() {
+  // Floating cookie icon (always present)
+  var fab = document.createElement('button');
+  fab.type = 'button';
+  fab.id = 'cookieFab';
+  fab.className = 'cookie-fab';
+  fab.setAttribute('aria-label', 'Cookie preferences');
+  fab.setAttribute('aria-expanded', 'false');
+  fab.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5Z"/><circle cx="9" cy="10" r=".6" fill="currentColor"/><circle cx="14.5" cy="13.5" r=".6" fill="currentColor"/><circle cx="9.5" cy="15" r=".6" fill="currentColor"/><circle cx="12.5" cy="8" r=".6" fill="currentColor"/></svg>';
+  document.body.appendChild(fab);
+
+  // Preferences panel
+  var panel = document.createElement('div');
+  panel.id = 'cookiePanel';
+  panel.className = 'cookie-panel';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'Cookie preferences');
+  panel.setAttribute('aria-hidden', 'true');
+  panel.innerHTML =
+    '<div class="cookie-panel-head">' +
+      '<h2 class="cookie-panel-title">Cookie Preferences</h2>' +
+      '<button type="button" class="cookie-panel-close" id="cookiePanelClose" aria-label="Close">&times;</button>' +
+    '</div>' +
+    '<p class="cookie-panel-text">We use cookies for analytics and advertising, which can include sharing data with third-party partners for measurement and targeted advertising. You can opt out anytime.</p>' +
+    '<div class="cookie-toggle-row">' +
+      '<div class="cookie-toggle-copy"><div class="cookie-toggle-label">Analytics &amp; advertising</div><div class="cookie-toggle-sub">Measures traffic and supports relevant advertising.</div></div>' +
+      '<label class="cookie-switch"><input type="checkbox" id="cookieToggleAA"><span class="cookie-slider"></span></label>' +
+    '</div>' +
+    '<div class="cookie-panel-actions">' +
+      '<button type="button" class="cookie-btn cookie-btn-primary" id="cookieSave">Save preferences</button>' +
+    '</div>' +
+    '<a class="cookie-panel-link" href="https://csenge.com/wp-content/uploads/2025/05/Privacy-Policy-2025.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>';
+  document.body.appendChild(panel);
+
+  // Wire interactions
+  fab.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (panel.classList.contains('is-open')) closeCookiePanel(); else openCookiePanel();
+  });
+  document.getElementById('cookiePanelClose').addEventListener('click', closeCookiePanel);
+  document.getElementById('cookieSave').addEventListener('click', function() {
+    var on = document.getElementById('cookieToggleAA').checked;
+    cookieSetConsent(on ? 'granted' : 'denied');
+    closeCookiePanel();
+  });
+
+  // Close on outside click / Escape
+  document.addEventListener('click', function(e) {
+    if (!panel.classList.contains('is-open')) return;
+    if (panel.contains(e.target) || fab.contains(e.target)) return;
+    closeCookiePanel();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && panel.classList.contains('is-open')) closeCookiePanel();
+  });
+
+  // Footer "Cookie Preferences" link (second opt-out entry point).
+  // Injected as an <a> so it inherits the existing footer-legal link styling.
+  var legal = document.querySelector('.footer-legal-links');
+  if (legal) {
+    var link = document.createElement('a');
+    link.className = 'footer-cookie-link';
+    link.setAttribute('role', 'button');
+    link.setAttribute('tabindex', '0');
+    link.textContent = 'Cookie Preferences';
+    link.addEventListener('click', openCookiePanel);
+    link.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCookiePanel(e); }
+    });
+    legal.appendChild(link);
   }
 
-  // Create and insert the cookie consent banner
-  const banner = createCookieBanner();
-  document.body.appendChild(banner);
+  cookieSyncToggle();
 
-  // Show banner after a short delay
-  setTimeout(() => {
-    banner.classList.add('show');
-  }, 1000);
-
-  // Handle accept button
-  document.getElementById('cookie-accept').addEventListener('click', function() {
-    acceptCookies();
-    hideBanner(banner);
-  });
-
-  // Handle decline button
-  document.getElementById('cookie-decline').addEventListener('click', function() {
-    declineCookies();
-    hideBanner(banner);
-  });
+  // First-visit notice (shown once)
+  if (localStorage.getItem(COOKIE_NOTICE_KEY) !== 'true') {
+    showCookieNotice();
+  }
 }
 
-function createCookieBanner() {
-  const banner = document.createElement('div');
-  banner.id = 'cookie-consent';
-  banner.className = 'cookie-consent';
-  banner.setAttribute('role', 'dialog');
-  banner.setAttribute('aria-label', 'Cookie consent');
-  banner.innerHTML = `
-    <div class="cookie-consent-content">
-      <div class="cookie-consent-text">
-        <p><strong>Your Privacy Matters</strong></p>
-        <p>We use cookies for analytics and advertising, which can include sharing data with third-party partners for measurement and targeted advertising. Choose Decline to allow only essential cookies. See our <a href="https://csenge.com/wp-content/uploads/2025/05/Privacy-Policy-2025.pdf" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;color:inherit;">Privacy Policy</a>.</p>
-      </div>
-      <div class="cookie-consent-actions">
-        <button id="cookie-decline" class="cookie-btn cookie-btn-secondary">Decline</button>
-        <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Accept</button>
-      </div>
-    </div>
-  `;
-  return banner;
-}
-
-function acceptCookies() {
-  localStorage.setItem('cookie_consent', 'accepted');
-
-  // Update consent in Google Analytics
-  gtag('consent', 'update', {
-    'analytics_storage': 'granted'
-  });
-
-  // Track the consent event
-  gtag('event', 'cookie_consent', {
-    'event_category': 'consent',
-    'event_label': 'accepted'
-  });
-}
-
-function declineCookies() {
-  localStorage.setItem('cookie_consent', 'declined');
-
-  // Track the decline event (this will still be sent as it's considered essential)
-  gtag('event', 'cookie_consent', {
-    'event_category': 'consent',
-    'event_label': 'declined'
-  });
-}
-
-function hideBanner(banner) {
-  banner.classList.remove('show');
-  setTimeout(() => {
-    banner.remove();
-  }, 300);
-}
+document.addEventListener('DOMContentLoaded', buildCookieUI);
 
 // ----------------------------------------
 // Custom Event Tracking

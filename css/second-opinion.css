@@ -173,12 +173,6 @@
   transform: translateY(-1px);
 }
 
-.sof-intro-consent {
-  max-width: 440px;
-  margin: 20px auto 0;
-  text-align: left;
-}
-
 /* ── QUESTION SCREEN ── */
 .sof-question-screen {
   display: none;
