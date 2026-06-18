@@ -74,7 +74,7 @@ function openCookiePanel(e) {
   panel.classList.add('is-open');
   panel.setAttribute('aria-hidden', 'false');
   if (fab) fab.setAttribute('aria-expanded', 'true');
-  dismissCookieNotice();
+  dismissCookieNotice(true);
 }
 
 function closeCookiePanel() {
@@ -88,16 +88,20 @@ function closeCookiePanel() {
 
 var cookieNoticeTimer = null;
 
-function dismissCookieNotice() {
+// markSeen=true permanently suppresses the notice (explicit dismissal: "Got it"
+// or opening Manage). Passive dismissal (timer/navigation) passes false, so the
+// notice can reappear in a future session until an explicit choice is made.
+function dismissCookieNotice(markSeen) {
   var notice = document.getElementById('cookieNotice');
   if (!notice) return;
   if (cookieNoticeTimer) { clearTimeout(cookieNoticeTimer); cookieNoticeTimer = null; }
-  localStorage.setItem(COOKIE_NOTICE_KEY, 'true');
+  if (markSeen) localStorage.setItem(COOKIE_NOTICE_KEY, 'true');
   notice.classList.remove('show');
   setTimeout(function() { if (notice.parentNode) notice.parentNode.removeChild(notice); }, 300);
 }
 
 function showCookieNotice() {
+  sessionStorage.setItem('cookie_notice_session', 'true');
   var notice = document.createElement('div');
   notice.id = 'cookieNotice';
   notice.className = 'cookie-notice';
@@ -114,12 +118,13 @@ function showCookieNotice() {
   document.getElementById('cookieNoticeManage').addEventListener('click', openCookiePanel);
   document.getElementById('cookieNoticeGotIt').addEventListener('click', function(e) {
     e.stopPropagation();
-    dismissCookieNotice();
+    dismissCookieNotice(true);
   });
 
-  // Auto-dismiss the notice after 30s if the visitor doesn't act on it.
-  // The persistent cookie icon + footer link remain available either way.
-  cookieNoticeTimer = setTimeout(dismissCookieNotice, 30000);
+  // Auto-dismiss after 10s if the visitor doesn't act. Passive dismissal does
+  // not permanently suppress the notice (markSeen=false). The persistent cookie
+  // icon + footer link remain available either way.
+  cookieNoticeTimer = setTimeout(function() { dismissCookieNotice(false); }, 10000);
 }
 
 function buildCookieUI() {
@@ -196,8 +201,11 @@ function buildCookieUI() {
 
   cookieSyncToggle();
 
-  // First-visit notice (shown once)
-  if (localStorage.getItem(COOKIE_NOTICE_KEY) !== 'true') {
+  // First-visit notice — shown once per session, and not again across sessions
+  // once explicitly dismissed or once an explicit consent choice is made.
+  var noticeSeen = localStorage.getItem(COOKIE_NOTICE_KEY) === 'true';
+  var noticeThisSession = sessionStorage.getItem('cookie_notice_session') === 'true';
+  if (!noticeSeen && !noticeThisSession) {
     showCookieNotice();
   }
 }

@@ -68,7 +68,7 @@ moment — the first-visit notice is purely informational ("Manage" / "Got it").
 
 | Requirement | How it's met |
 |---|---|
-| **Notice** | A compact, one-time first-visit notice ("We use cookies for analytics and advertising. You can opt out anytime.") that auto-dismisses after 30 seconds, plus a link to the Csenge Privacy Policy from both the preferences panel and the site footer. The persistent cookie icon and footer link remain available after the notice closes. |
+| **Notice** | A compact first-visit notice ("We use cookies for analytics and advertising. You can opt out anytime.") shown once per browser session. It auto-dismisses after 10 seconds; passive dismissal (timer or navigating on) does not permanently suppress it, so it reappears in a future session until the visitor explicitly dismisses it or makes a choice. A link to the Csenge Privacy Policy appears in both the preferences panel and the site footer, and the persistent cookie icon + footer link remain available after the notice closes. |
 | **Accessible opt-out** | A persistent floating cookie icon (bottom-right, every page) **and** a "Cookie Preferences" link in the footer, both opening a preferences panel with a single Analytics & advertising toggle that can be switched off and saved at any time. |
 | **Honor universal opt-out signals** | If the visitor's browser sends **Global Privacy Control** (`navigator.globalPrivacyControl === true`) and the visitor has not made an explicit choice, consent resolves to **denied** automatically. |
 

@@ -2793,8 +2793,11 @@ body.menu-open {
 
   .cookie-panel,
   .cookie-notice {
+    left: 12px;
     right: 12px;
     bottom: 76px;
+    width: auto;
+    max-width: none;
   }
 }
 
