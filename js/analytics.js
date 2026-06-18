@@ -72,7 +72,7 @@ function createCookieBanner() {
     <div class="cookie-consent-content">
       <div class="cookie-consent-text">
         <p><strong>Your Privacy Matters</strong></p>
-        <p>We use cookies to analyze site traffic and improve your experience. Your data is never sold.</p>
+        <p>We use cookies for analytics and advertising, which can include sharing data with third-party partners for measurement and targeted advertising. Choose Decline to allow only essential cookies. See our <a href="https://csenge.com/wp-content/uploads/2025/05/Privacy-Policy-2025.pdf" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;color:inherit;">Privacy Policy</a>.</p>
       </div>
       <div class="cookie-consent-actions">
         <button id="cookie-decline" class="cookie-btn cookie-btn-secondary">Decline</button>

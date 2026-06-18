@@ -672,6 +672,7 @@ function initExitIntentPopup() {
       '<p class="sof-intro-sub">Answer 8 questions in under 3 minutes. We\'ll identify the gaps in your current plan and whether a second opinion makes sense &mdash; at no cost and no obligation.</p>' +
       '<div class="sof-intro-meta"><div class="sof-intro-meta-item"><div class="sof-dot"></div>3 minutes</div><div class="sof-intro-meta-item"><div class="sof-dot"></div>8 questions</div><div class="sof-intro-meta-item"><div class="sof-dot"></div>No obligation</div></div>' +
       '<button class="sof-btn-start" onclick="sofStartQuiz()">Begin Assessment &rarr;</button>' +
+      '<div class="sof-intro-consent"><div class="sof-consent-wrap"><input type="checkbox" id="sofIntroConsent" checked><label class="sof-consent-text" for="sofIntroConsent">I agree to High Ridge Advisory using cookies and analytics/advertising technologies to run and measure this assessment, and to processing my responses to prepare my results. Required to begin &mdash; see our <a href="https://csenge.com/wp-content/uploads/2025/05/Privacy-Policy-2025.pdf" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">Privacy Policy</a>.</label></div></div>' +
     '</div>' +
 
     // Q1

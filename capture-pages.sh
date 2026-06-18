@@ -4,9 +4,11 @@
 # Source: Netlify preview site (for pre-approval of changes before going live).
 #
 # Usage: bash capture-pages.sh
+#        SITE_URL=https://drafts--hra-website.netlify.app bash capture-pages.sh  (capture a branch deploy)
 # Output: PNGs saved to ./compliance-pdfs/
 
-SITE_URL="https://hra-website.netlify.app"
+# Defaults to the production preview; override SITE_URL to capture a branch deploy.
+SITE_URL="${SITE_URL:-https://hra-website.netlify.app}"
 OUTPUT_DIR="./compliance-pdfs"
 TODAY=$(date +%Y-%m-%d)
 CHROME="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"

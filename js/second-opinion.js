@@ -119,13 +119,40 @@
     }
   }
 
+  // Consent gate state — only set true once the intro consent box is confirmed.
+  // startQuiz() is the single entry point into the quiz (called by the UI button
+  // and any programmatic/routing call), so gating here blocks every path in.
+  var sofConsentGranted = false;
+
   function startQuiz() {
+    // The intro consent checkbox only exists on the exit-popup surface.
+    // If present and unchecked, block entry entirely.
+    var introConsent = document.getElementById('sofIntroConsent');
+    if (introConsent && !introConsent.checked) {
+      alert('This is required to proceed — please check the box to begin your assessment.');
+      return;
+    }
+    sofConsentGranted = true;
     showScreen('sofQ1');
     setProgress(1);
     sofTrack('sof_quiz_start');
   }
 
+  // Routing guard: on the popup surface (where the intro consent box exists),
+  // refuse to advance into any quiz screen unless consent was marked true via
+  // startQuiz(). Other surfaces have no checkbox, so this is a no-op there.
+  function sofConsentBlocked() {
+    var introConsent = document.getElementById('sofIntroConsent');
+    // Block if the gate was never passed, or if the box has since been unchecked.
+    if (introConsent && (!sofConsentGranted || !introConsent.checked)) {
+      alert('This is required to proceed — please check the box to begin your assessment.');
+      return true;
+    }
+    return false;
+  }
+
   function goNext(nextQ) {
+    if (sofConsentBlocked()) return;
     // Track the question they just answered (nextQ - 1)
     var prevQ = nextQ - 1;
     var prevKey = 'q' + prevQ;
@@ -144,6 +171,7 @@
   }
 
   function goContact() {
+    if (sofConsentBlocked()) return;
     // Track Q8 answer
     sofTrack('sof_question_answered', {
       question_number: 8,
