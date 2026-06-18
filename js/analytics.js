@@ -71,8 +71,8 @@ function openCookiePanel(e) {
   var fab = document.getElementById('cookieFab');
   if (!panel) return;
   cookieSyncToggle();
+  panel.inert = false;
   panel.classList.add('is-open');
-  panel.setAttribute('aria-hidden', 'false');
   if (fab) fab.setAttribute('aria-expanded', 'true');
   dismissCookieNotice();
 }
@@ -81,8 +81,11 @@ function closeCookiePanel() {
   var panel = document.getElementById('cookiePanel');
   var fab = document.getElementById('cookieFab');
   if (!panel) return;
+  // Return focus to the trigger before making the panel inert, so focus is
+  // never retained inside an element that's hidden from assistive technology.
+  if (panel.contains(document.activeElement) && fab) fab.focus();
   panel.classList.remove('is-open');
-  panel.setAttribute('aria-hidden', 'true');
+  panel.inert = true;
   if (fab) fab.setAttribute('aria-expanded', 'false');
 }
 
@@ -141,7 +144,7 @@ function buildCookieUI() {
   panel.className = 'cookie-panel';
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-label', 'Cookie preferences');
-  panel.setAttribute('aria-hidden', 'true');
+  panel.inert = true; // closed by default — not focusable, hidden from assistive tech
   panel.innerHTML =
     '<div class="cookie-panel-head">' +
       '<h2 class="cookie-panel-title">Cookie Preferences</h2>' +
