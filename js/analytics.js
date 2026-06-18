@@ -29,11 +29,6 @@ gtag('consent', 'default', {
   'ad_personalization': 'denied'
 });
 
-function cookieHasExplicitChoice() {
-  var v = localStorage.getItem(COOKIE_CONSENT_KEY);
-  return v === 'granted' || v === 'denied';
-}
-
 function cookieResolveConsent() {
   var explicit = localStorage.getItem(COOKIE_CONSENT_KEY);
   if (explicit === 'granted' || explicit === 'denied') return explicit;
