@@ -86,9 +86,12 @@ function closeCookiePanel() {
   if (fab) fab.setAttribute('aria-expanded', 'false');
 }
 
+var cookieNoticeTimer = null;
+
 function dismissCookieNotice() {
   var notice = document.getElementById('cookieNotice');
   if (!notice) return;
+  if (cookieNoticeTimer) { clearTimeout(cookieNoticeTimer); cookieNoticeTimer = null; }
   localStorage.setItem(COOKIE_NOTICE_KEY, 'true');
   notice.classList.remove('show');
   setTimeout(function() { if (notice.parentNode) notice.parentNode.removeChild(notice); }, 300);
@@ -113,6 +116,10 @@ function showCookieNotice() {
     e.stopPropagation();
     dismissCookieNotice();
   });
+
+  // Auto-dismiss the notice after 30s if the visitor doesn't act on it.
+  // The persistent cookie icon + footer link remain available either way.
+  cookieNoticeTimer = setTimeout(dismissCookieNotice, 30000);
 }
 
 function buildCookieUI() {
