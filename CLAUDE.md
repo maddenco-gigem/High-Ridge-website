@@ -84,3 +84,9 @@ Two patterns established 2026-04-16 that should be preserved:
 ## Design Specs and Implementation Plans
 
 Major feature work should be planned in `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` before implementation, with the task-level plan in `docs/superpowers/plans/YYYY-MM-DD-<topic>.md`. This keeps architectural decisions and future-improvement lists discoverable in the repo rather than scattered across session notes.
+
+---
+
+## Cookie Consent & Tracking
+
+The site uses an **opt-out** cookie consent model (analytics/advertising default ON; floating cookie icon + footer "Cookie Preferences" link open a preferences panel; GPC honored; one-time first-visit notice). Implementation is in `js/analytics.js` + `css/styles.css`. **Do not re-add an auto Accept/Decline banner or switch to opt-in without reason** — the stance, legal rationale (US/TX), and choices are recorded in `docs/compliance/2026-06-18-cookie-consent-and-tracking-policy.md`. Update and re-date that record on any consent/tracking change. Any advertising pixel (e.g. Meta) must fire only when consent is granted and must send **no PII or financial quiz answers** to the platform.
