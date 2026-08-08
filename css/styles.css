@@ -3798,3 +3798,20 @@ button[type="submit"] .btn-spinner + span {
 .navbar.is-scrolled .nav-logo img {
   background-color: transparent;
 }
+
+/* ----------------------------------------
+   Build credit (footer)
+   ---------------------------------------- */
+.footer-credit {
+  margin-top: 0.35rem;
+  opacity: 0.75;
+}
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer-credit a:hover,
+.footer-credit a:focus-visible {
+  color: var(--gray-300, #d1d5db);
+}
