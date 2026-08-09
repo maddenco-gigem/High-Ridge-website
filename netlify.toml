@@ -16,6 +16,78 @@
   to = "/"
   status = 301
 
+# --- Keep internal files off the public site -------------------------------
+# publish = "." serves the WHOLE repo. Verified live 2026-08-08: /CLAUDE.md,
+# /claude.md, /README.md, /ActivityWatch-Setup.md, /quickstart-guide.md and
+# /capture-pages.sh all returned 200 with their real contents. Netlify hides
+# dotfiles by default (/.env and /.gitignore were already 404), but that is a
+# platform default, not a guarantee — the .env rules below make it explicit.
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/claude.md"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ActivityWatch-Setup.md"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/quickstart-guide.md"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Second-Opinion-Finder-Audit.md"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/capture-pages.sh"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/.env"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/.gitignore"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/session-notes/*"
+  to = "/"
+  status = 301
+  force = true
+
 # Headers for security and caching
 [[headers]]
   for = "/*"
