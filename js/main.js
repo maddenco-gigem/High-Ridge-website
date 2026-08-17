@@ -761,12 +761,12 @@ function initExitIntentPopup() {
     if (!document.querySelector('link[href*="second-opinion.css"]')) {
       var css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = 'css/second-opinion.css';
+      css.href = '/css/second-opinion.css';
       document.head.appendChild(css);
     }
     if (!document.querySelector('script[src*="second-opinion.js"]')) {
       var js = document.createElement('script');
-      js.src = 'js/second-opinion.js';
+      js.src = '/js/second-opinion.js';
       document.body.appendChild(js);
     }
   }
