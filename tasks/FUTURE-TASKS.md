@@ -38,8 +38,8 @@
 ## Phase 3: Content Development (Weeks 5-8)
 
 ### Blog & Resources
-- [ ] Set up blog infrastructure (`/blog/` directory)
-- [ ] Write first 5 blog articles (see topic suggestions in gap analysis)
+- [x] Set up blog infrastructure ✅ (`insights.html` + `/insights/` directory, added 2026-08-17 — Ridge Report archive, not a general `/blog/`)
+- [x] Publish first 4 articles ✅ (2026-08-17 — republished the already compliance-approved May–August 2026 Ridge Report editions rather than writing new posts; pending compliance/Jay sign-off that web posting is covered by the existing approval)
 - [ ] Create downloadable guide with landing page
 - [ ] Create resource center page (`resources.html`)
 
