@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Discovery &amp; Risk Assessment | High Ridge Advisory</title>
+  <meta name="description" content="Confidential client discovery and risk assessment for High Ridge Advisory clients and prospective clients.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://highridgeadvisory.com/client-assessment.html">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#1a365d">
+  <script src="js/analytics.js" defer></script>
+
+  <!-- Fonts -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-garamond.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-garamond-italic.woff2" crossorigin>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" href="css/animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/animations.css"></noscript>
+
+  <style>
+    /* Client Discovery & Risk Assessment — page-scoped styles.
+       Namespaced with "aq-" so nothing here collides with sitewide classes. */
+    .aq-hero{
+      padding: calc(var(--nav-height) + var(--space-12)) var(--space-6) var(--space-16);
+      background: linear-gradient(180deg, var(--navy-800) 0%, var(--navy-900) 100%);
+      color: var(--white);
+      text-align: center;
+    }
+    .aq-hero-inner{max-width: 720px; margin: 0 auto;}
+    .aq-eyebrow{
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: var(--text-xs);
+      color: var(--gold-400);
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+    .aq-hero h1{
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      font-weight: 500;
+      line-height: var(--leading-tight);
+      margin: 0;
+    }
+    .aq-hero h1 em{font-style: italic; color: var(--gold-400);}
+    .aq-hero p{
+      color: var(--gray-200);
+      font-size: var(--text-lg);
+      max-width: 560px;
+      margin: var(--space-5) auto 0;
+    }
+    .aq-badges{
+      display: flex; justify-content: center; gap: var(--space-8); flex-wrap: wrap;
+      margin-top: var(--space-10);
+    }
+    .aq-badge{font-size: var(--text-sm); color: var(--gray-200);}
+    .aq-badge b{display:block; font-family: var(--font-heading); font-size: var(--text-xl); color: var(--white); font-weight: 500;}
+
+    .aq-main{max-width: 780px; margin: -34px auto var(--space-16); padding: 0 var(--space-5);}
+
+    .aq-form{
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+
+    .aq-section{
+      padding: var(--space-10) var(--space-10);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .aq-section:last-of-type{border-bottom: none;}
+
+    .aq-section-label{display:flex; align-items:center; gap: var(--space-3); margin-bottom: var(--space-6);}
+    .aq-section-index{
+      font-family: var(--font-heading);
+      font-style: italic;
+      color: var(--gold-500);
+      font-size: var(--text-base);
+      border: 1px solid var(--gold-500);
+      border-radius: 50%;
+      width: 34px; height: 34px;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink: 0;
+    }
+    .aq-section-label h2{font-family: var(--font-heading); font-size: var(--text-2xl); font-weight: 500; color: var(--navy-900); margin: 0;}
+    .aq-section-sub{color: var(--gray-500); font-size: var(--text-sm); margin: calc(var(--space-4) * -1) 0 var(--space-6) 46px;}
+
+    .aq-field{margin-bottom: var(--space-6);}
+    .aq-field:last-child{margin-bottom: 0;}
+    .aq-field label.aq-q{
+      display:block; font-weight:600; font-size: var(--text-sm); color: var(--navy-900); margin-bottom: var(--space-1);
+    }
+    .aq-hint{color: var(--gray-500); font-size: var(--text-xs); margin-bottom: var(--space-3);}
+
+    .aq-field input[type="text"], .aq-field input[type="email"], .aq-field input[type="tel"],
+    .aq-field select, .aq-field textarea{
+      width:100%; padding: 11px 13px; border: 1px solid var(--gray-300); border-radius: 10px;
+      font-family: var(--font-body); font-size: var(--text-sm); background: var(--white); color: var(--gray-900);
+    }
+    .aq-field textarea{resize: vertical; min-height: 80px;}
+    .aq-field input:focus, .aq-field select:focus, .aq-field textarea:focus{
+      outline: 2px solid var(--gold-500); outline-offset: 1px; border-color: var(--gold-500);
+    }
+
+    .aq-row2{display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);}
+    @media (max-width: 560px){ .aq-row2{grid-template-columns: 1fr;} }
+
+    .aq-options{display:flex; flex-direction:column; gap: var(--space-2);}
+    .aq-opt{
+      display:flex; align-items:flex-start; gap: var(--space-3);
+      padding: 11px 14px; border: 1px solid var(--gray-200); border-radius: 10px;
+      cursor:pointer; font-size: var(--text-sm); font-family: var(--font-body);
+      transition: border-color .15s, background .15s;
+    }
+    .aq-opt:hover{border-color: var(--gold-500); background: var(--gray-50);}
+    .aq-opt input{margin-top: 3px; accent-color: var(--navy-800); flex-shrink: 0;}
+    .aq-opt-text b{display:block; color: var(--navy-900); font-weight:600;}
+    .aq-opt-text span{color: var(--gray-500); font-size: var(--text-xs);}
+
+    .aq-scale{display:flex; gap: var(--space-2); justify-content: space-between;}
+    .aq-scale label{
+      flex:1; text-align:center; font-size: var(--text-xs); color: var(--gray-500);
+      display:flex; flex-direction:column; align-items:center; gap: var(--space-2); cursor:pointer;
+    }
+    .aq-scale input{accent-color: var(--navy-800);}
+
+    .aq-consent{
+      display:flex; gap: var(--space-3); align-items:flex-start;
+      font-size: var(--text-xs); color: var(--gray-700);
+      background: var(--gray-50); padding: var(--space-4) var(--space-5); border-radius: 10px;
+    }
+    .aq-consent input{margin-top: 3px;}
+
+    .aq-submit-wrap{padding: var(--space-8) var(--space-10) var(--space-10); text-align:center;}
+    .aq-submit-wrap button{
+      background: var(--navy-900); color: var(--white); border:none;
+      padding: 15px 38px; border-radius: 999px; font-size: var(--text-base); font-weight:600;
+      font-family: var(--font-body); cursor:pointer; transition: background .15s, transform .15s;
+    }
+    .aq-submit-wrap button:hover{background: var(--gold-500); transform: translateY(-1px);}
+    .aq-submit-note{margin-top: var(--space-3); font-size: var(--text-xs); color: var(--gray-500);}
+    .aq-disclaimer{margin-top: var(--space-2); font-size: var(--text-xs); color: var(--gray-500);}
+
+    .aq-required{color: var(--gold-500);}
+
+    .aq-form.is-submitting .aq-submit-wrap button{opacity: 0.7; cursor: default;}
+  </style>
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <header class="navbar is-scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="images/logo-text-200.webp" alt="High Ridge Advisory Logo" width="100" height="100">
+      </a>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="insights.html" class="nav-link">Insights</a>
+
+        <div class="nav-dropdown" id="client-portal">
+          <button class="nav-dropdown-toggle" aria-expanded="false" aria-controls="portal-menu">
+            Client Hub
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" id="portal-menu">
+            <a href="client-portal.html#investments" class="nav-dropdown-item">View Investments</a>
+            <a href="client-portal.html#wealth-plan" class="nav-dropdown-item">Access Wealth Plan</a>
+          </div>
+        </div>
+
+        <a href="tel:+19726325700" class="nav-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>972.632.5700</span>
+        </a>
+
+        <a href="second-opinion.html#sofQuizCard" class="btn btn-secondary nav-cta-secondary">Second Opinion<br>Assessment</a>
+        <a href="#" data-booking class="btn btn-primary nav-cta">Book a Meeting</a>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="aq-hero">
+      <div class="aq-hero-inner">
+        <div class="aq-eyebrow">Confidential Client Assessment</div>
+        <h1>A Higher Standard of <em>Clarity</em></h1>
+        <p>Whether we're just getting acquainted or you've been a client for years, help us make sure your full financial picture — risk tolerance, planning priorities, and estate and tax coordination — is current. Jay will personally review your answers.</p>
+        <div class="aq-badges">
+          <div class="aq-badge"><b>10&ndash;15 min</b>To complete</div>
+          <div class="aq-badge"><b>Confidential</b>Reviewed by Jay only</div>
+          <div class="aq-badge"><b>No obligation</b>No cost to submit</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="aq-main">
+      <form name="client-assessment" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" id="assessmentForm" class="aq-form">
+        <input type="hidden" name="form-name" value="client-assessment">
+        <input type="hidden" name="form-loaded" id="form-loaded" value="">
+
+        <!-- Honeypot fields for spam protection (hidden from humans) -->
+        <div class="form-honeypot" aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="form-honeypot" aria-hidden="true">
+          <label>Website: <input type="url" name="website" tabindex="-1" autocomplete="off" placeholder="https://"></label>
+        </div>
+
+        <!-- SECTION A: CONTACT -->
+        <div class="aq-section">
+          <div class="aq-section-label">
+            <div class="aq-section-index">A</div>
+            <h2>Your Information</h2>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Which best describes you? <span class="aq-required">*</span></label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="client_type" value="Current High Ridge client" required><span class="aq-opt-text"><b>Current High Ridge client</b><span>This is a periodic review / update</span></span></label>
+              <label class="aq-opt"><input type="radio" name="client_type" value="New prospective client" required><span class="aq-opt-text"><b>New prospective client</b><span>I haven't worked with High Ridge before</span></span></label>
+            </div>
+          </div>
+
+          <div class="aq-row2">
+            <div class="aq-field">
+              <label class="aq-q">First Name <span class="aq-required">*</span></label>
+              <input type="text" name="first_name" required autocomplete="given-name">
+            </div>
+            <div class="aq-field">
+              <label class="aq-q">Last Name <span class="aq-required">*</span></label>
+              <input type="text" name="last_name" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="aq-row2">
+            <div class="aq-field">
+              <label class="aq-q">Email Address <span class="aq-required">*</span></label>
+              <input type="email" name="email" required autocomplete="email">
+            </div>
+            <div class="aq-field">
+              <label class="aq-q">Phone Number</label>
+              <input type="tel" name="phone" autocomplete="tel">
+            </div>
+          </div>
+          <div class="aq-row2">
+            <div class="aq-field">
+              <label class="aq-q">City / Area</label>
+              <input type="text" name="city">
+            </div>
+            <div class="aq-field">
+              <label class="aq-q">Best Time to Reach You</label>
+              <select name="best_time">
+                <option value="No preference">No preference</option>
+                <option value="Morning (8am-12pm)">Morning (8am&ndash;12pm)</option>
+                <option value="Afternoon (12pm-4pm)">Afternoon (12pm&ndash;4pm)</option>
+                <option value="Evening (4pm-7pm)">Evening (4pm&ndash;7pm)</option>
+              </select>
+            </div>
+          </div>
+          <div class="aq-field">
+            <label class="aq-q">Marital / Household Status</label>
+            <select name="household_status">
+              <option value="">Select one</option>
+              <option>Single</option>
+              <option>Married / Partnered</option>
+              <option>Widowed</option>
+              <option>Divorced</option>
+            </select>
+          </div>
+          <div class="aq-field">
+            <label class="aq-q">How did you hear about High Ridge Advisory?</label>
+            <div class="aq-hint">Optional</div>
+            <input type="text" name="referral_source" placeholder="e.g. referral from a friend, church, Google, event, etc.">
+          </div>
+        </div>
+
+        <!-- SECTION B: RISK ASSESSMENT -->
+        <div class="aq-section">
+          <div class="aq-section-label">
+            <div class="aq-section-index">B</div>
+            <h2>Investment Risk Profile</h2>
+          </div>
+          <div class="aq-section-sub">Helps us understand how much risk fits your goals, timeline, and temperament.</div>
+
+          <div class="aq-field">
+            <label class="aq-q">What is the primary goal for these investable assets?</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="primary_goal" value="Growth"><span class="aq-opt-text"><b>Growth</b><span>Maximize long-term value, comfortable with fluctuation</span></span></label>
+              <label class="aq-opt"><input type="radio" name="primary_goal" value="Balanced growth and income"><span class="aq-opt-text"><b>Balanced growth and income</b><span>A mix of appreciation and current income</span></span></label>
+              <label class="aq-opt"><input type="radio" name="primary_goal" value="Income"><span class="aq-opt-text"><b>Income</b><span>Generate reliable cash flow</span></span></label>
+              <label class="aq-opt"><input type="radio" name="primary_goal" value="Preservation"><span class="aq-opt-text"><b>Preservation</b><span>Protect what I have, growth is secondary</span></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">When will you likely need to draw on these funds?</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="time_horizon" value="Already drawing / within 2 years"><span class="aq-opt-text"><b>Already drawing on it, or within 2 years</b></span></label>
+              <label class="aq-opt"><input type="radio" name="time_horizon" value="3-7 years"><span class="aq-opt-text"><b>3&ndash;7 years</b></span></label>
+              <label class="aq-opt"><input type="radio" name="time_horizon" value="8-15 years"><span class="aq-opt-text"><b>8&ndash;15 years</b></span></label>
+              <label class="aq-opt"><input type="radio" name="time_horizon" value="15+ years"><span class="aq-opt-text"><b>15+ years</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">If your portfolio dropped 20% in a market downturn, what would you most likely do?</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="downturn_reaction" value="Sell some or all to limit further loss"><span class="aq-opt-text"><b>Sell some or all</b><span>Limit further loss</span></span></label>
+              <label class="aq-opt"><input type="radio" name="downturn_reaction" value="Do nothing and wait it out"><span class="aq-opt-text"><b>Do nothing</b><span>Wait it out</span></span></label>
+              <label class="aq-opt"><input type="radio" name="downturn_reaction" value="Invest more while prices are lower"><span class="aq-opt-text"><b>Invest more</b><span>Take advantage of lower prices</span></span></label>
+              <label class="aq-opt"><input type="radio" name="downturn_reaction" value="Not sure / never experienced this"><span class="aq-opt-text"><b>Not sure</b><span>Haven't experienced this before</span></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">On a scale of 1&ndash;5, how comfortable are you accepting volatility for higher long-term returns?</label>
+            <div class="aq-scale">
+              <label>1<br><span>Not at all</span><input type="radio" name="volatility_comfort" value="1"></label>
+              <label>2<input type="radio" name="volatility_comfort" value="2"></label>
+              <label>3<input type="radio" name="volatility_comfort" value="3"></label>
+              <label>4<input type="radio" name="volatility_comfort" value="4"></label>
+              <label>5<br><span>Very comfortable</span><input type="radio" name="volatility_comfort" value="5"></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you anticipate needing to withdraw a significant amount (10%+) from these assets in the next 12 months?</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="liquidity_need" value="Yes"><span class="aq-opt-text"><b>Yes</b></span></label>
+              <label class="aq-opt"><input type="radio" name="liquidity_need" value="No"><span class="aq-opt-text"><b>No</b></span></label>
+              <label class="aq-opt"><input type="radio" name="liquidity_need" value="Not sure"><span class="aq-opt-text"><b>Not sure</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Which best describes your investment experience?</label>
+            <select name="investment_experience">
+              <option value="">Select one</option>
+              <option>Limited — mostly employer retirement accounts</option>
+              <option>Moderate — self-directed stocks/funds for several years</option>
+              <option>Extensive — stocks, bonds, alternatives, real estate</option>
+              <option>Professional background in investing/finance</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SECTION C: WEALTH MANAGEMENT PLANNING -->
+        <div class="aq-section">
+          <div class="aq-section-label">
+            <div class="aq-section-index">C</div>
+            <h2>Wealth Management &amp; Planning</h2>
+          </div>
+          <div class="aq-section-sub">Gives us the full picture beyond investments alone.</div>
+
+          <div class="aq-field">
+            <label class="aq-q">Approximately how much do you have invested or saved across all accounts?</label>
+            <select name="asset_range">
+              <option value="">Select one</option>
+              <option>Under $500,000</option>
+              <option>$500,000 &ndash; $1 million</option>
+              <option>$1 million &ndash; $3 million</option>
+              <option>$3 million &ndash; $10 million</option>
+              <option>$10 million+</option>
+            </select>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you hold any accounts or work with any advisor outside of High Ridge?</label>
+            <div class="aq-hint">Current clients: include any outside accounts we don't already manage. Prospective clients: describe your current advisor relationship, if any.</div>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="current_advisor" value="Yes - satisfied"><span class="aq-opt-text"><b>Yes</b><span>and I'm satisfied with that relationship</span></span></label>
+              <label class="aq-opt"><input type="radio" name="current_advisor" value="Yes - have concerns"><span class="aq-opt-text"><b>Yes</b><span>but I have questions or concerns</span></span></label>
+              <label class="aq-opt"><input type="radio" name="current_advisor" value="No - self-managed"><span class="aq-opt-text"><b>No</b><span>I manage those myself</span></span></label>
+              <label class="aq-opt"><input type="radio" name="current_advisor" value="No - not applicable"><span class="aq-opt-text"><b>No</b><span>not applicable / all assets are with High Ridge</span></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">When did you last have a comprehensive review of your full financial picture (investments, tax, estate, insurance)?</label>
+            <select name="last_review">
+              <option value="">Select one</option>
+              <option>Within the last 12 months</option>
+              <option>1&ndash;3 years ago</option>
+              <option>More than 3 years ago</option>
+              <option>Never</option>
+            </select>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Which of these are current priorities for you? (select all that apply)</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="checkbox" name="priorities" value="Retirement readiness"><span class="aq-opt-text"><b>Retirement readiness</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="priorities" value="Reducing taxes"><span class="aq-opt-text"><b>Reducing taxes</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="priorities" value="Estate and legacy planning"><span class="aq-opt-text"><b>Estate and legacy planning</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="priorities" value="Business succession"><span class="aq-opt-text"><b>Business succession</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="priorities" value="Education funding"><span class="aq-opt-text"><b>Education funding</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="priorities" value="Coordinating investments with a CPA/attorney"><span class="aq-opt-text"><b>Coordinating investments with my CPA/attorney</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="priorities" value="Charitable giving"><span class="aq-opt-text"><b>Charitable giving</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Are you anticipating any major life or financial events in the next 1&ndash;3 years?</label>
+            <div class="aq-hint">Business sale, retirement, inheritance, relocation, marriage, divorce, etc. Optional.</div>
+            <textarea name="upcoming_events" placeholder="Optional — briefly describe"></textarea>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you hold any oil, gas, or mineral interests?</label>
+            <div class="aq-hint">Royalty interests (NRIs), non-participating royalty interests (NPRIs), working interests, or leased mineral rights. Optional.</div>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="mineral_interests" value="Yes - actively managed"><span class="aq-opt-text"><b>Yes</b><span>and I actively track/manage them</span></span></label>
+              <label class="aq-opt"><input type="radio" name="mineral_interests" value="Yes - not actively managed"><span class="aq-opt-text"><b>Yes</b><span>but I don't actively track/manage them</span></span></label>
+              <label class="aq-opt"><input type="radio" name="mineral_interests" value="No"><span class="aq-opt-text"><b>No</b></span></label>
+              <label class="aq-opt"><input type="radio" name="mineral_interests" value="Not sure"><span class="aq-opt-text"><b>Not sure</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you receive K-1 income from any partnerships, MLPs, or other pass-through entities?</label>
+            <div class="aq-hint">Optional</div>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="k1_income" value="Yes"><span class="aq-opt-text"><b>Yes</b></span></label>
+              <label class="aq-opt"><input type="radio" name="k1_income" value="No"><span class="aq-opt-text"><b>No</b></span></label>
+              <label class="aq-opt"><input type="radio" name="k1_income" value="Not sure"><span class="aq-opt-text"><b>Not sure</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you hold a concentrated stock position or equity compensation?</label>
+            <div class="aq-hint">RSUs, stock options, ESPP, or a single stock representing a large share of your net worth. Optional.</div>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="concentrated_stock" value="Yes"><span class="aq-opt-text"><b>Yes</b></span></label>
+              <label class="aq-opt"><input type="radio" name="concentrated_stock" value="No"><span class="aq-opt-text"><b>No</b></span></label>
+              <label class="aq-opt"><input type="radio" name="concentrated_stock" value="Not sure"><span class="aq-opt-text"><b>Not sure</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">What insurance coverage do you currently have in place? (select all that apply)</label>
+            <div class="aq-hint">Optional</div>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="checkbox" name="insurance_coverage" value="Life insurance"><span class="aq-opt-text"><b>Life insurance</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="insurance_coverage" value="Disability insurance"><span class="aq-opt-text"><b>Disability insurance</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="insurance_coverage" value="Long-term care insurance"><span class="aq-opt-text"><b>Long-term care insurance</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="insurance_coverage" value="Umbrella liability policy"><span class="aq-opt-text"><b>Umbrella liability policy</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="insurance_coverage" value="None of the above"><span class="aq-opt-text"><b>None of the above</b></span></label>
+              <label class="aq-opt"><input type="checkbox" name="insurance_coverage" value="Not sure"><span class="aq-opt-text"><b>Not sure</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you have significant outstanding debts or liabilities?</label>
+            <div class="aq-hint">Mortgages, business loans, notes, etc. Optional — a rough sense is fine.</div>
+            <textarea name="liabilities" placeholder="Optional — briefly describe"></textarea>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you have dependents, or are you funding education for children or grandchildren?</label>
+            <div class="aq-hint">Optional</div>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="dependents" value="Yes - actively funding education"><span class="aq-opt-text"><b>Yes</b><span>and actively funding education (529, etc.)</span></span></label>
+              <label class="aq-opt"><input type="radio" name="dependents" value="Yes - not funding education"><span class="aq-opt-text"><b>Yes</b><span>but not currently funding education</span></span></label>
+              <label class="aq-opt"><input type="radio" name="dependents" value="No"><span class="aq-opt-text"><b>No</b></span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION D: ESTATE & TAX COORDINATION -->
+        <div class="aq-section">
+          <div class="aq-section-label">
+            <div class="aq-section-index">D</div>
+            <h2>Estate &amp; Tax Coordination</h2>
+          </div>
+          <div class="aq-section-sub">Shows how well your legal, tax, and investment planning currently work together.</div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you have an up-to-date will and/or revocable living trust?</label>
+            <select name="estate_docs">
+              <option value="">Select one</option>
+              <option>Yes, both — reviewed in the last 3 years</option>
+              <option>Yes, but not reviewed recently</option>
+              <option>Only a will, no trust</option>
+              <option>No estate documents in place</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Are beneficiary designations on your retirement accounts and life insurance current?</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="beneficiaries_current" value="Yes"><span class="aq-opt-text"><b>Yes</b></span></label>
+              <label class="aq-opt"><input type="radio" name="beneficiaries_current" value="Not sure"><span class="aq-opt-text"><b>Not sure</b></span></label>
+              <label class="aq-opt"><input type="radio" name="beneficiaries_current" value="No / outdated"><span class="aq-opt-text"><b>No, likely outdated</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you have powers of attorney and healthcare directives in place?</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="poa_directives" value="Yes"><span class="aq-opt-text"><b>Yes</b></span></label>
+              <label class="aq-opt"><input type="radio" name="poa_directives" value="No"><span class="aq-opt-text"><b>No</b></span></label>
+              <label class="aq-opt"><input type="radio" name="poa_directives" value="Not sure"><span class="aq-opt-text"><b>Not sure</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you work with a CPA or tax professional?</label>
+            <select name="cpa_relationship">
+              <option value="">Select one</option>
+              <option>Yes — and they coordinate with my investment strategy</option>
+              <option>Yes — but there's little to no coordination today</option>
+              <option>No, I file on my own or use seasonal tax prep only</option>
+            </select>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you work with an estate planning attorney?</label>
+            <select name="attorney_relationship">
+              <option value="">Select one</option>
+              <option>Yes, an ongoing relationship</option>
+              <option>I've used one in the past, no ongoing relationship</option>
+              <option>No, I've never worked with one</option>
+            </select>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Do you own a business or hold a significant business interest?</label>
+            <div class="aq-options">
+              <label class="aq-opt"><input type="radio" name="business_owner" value="Yes - succession plan in place"><span class="aq-opt-text"><b>Yes</b><span>and I have a succession plan in place</span></span></label>
+              <label class="aq-opt"><input type="radio" name="business_owner" value="Yes - no succession plan"><span class="aq-opt-text"><b>Yes</b><span>but no succession plan yet</span></span></label>
+              <label class="aq-opt"><input type="radio" name="business_owner" value="No"><span class="aq-opt-text"><b>No</b></span></label>
+            </div>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-q">Any specific estate or tax concerns you'd like addressed?</label>
+            <div class="aq-hint">Estate tax exposure, gifting strategy, multi-generational transfer, out-of-state property, etc.</div>
+            <textarea name="estate_tax_notes" placeholder="Optional"></textarea>
+          </div>
+        </div>
+
+        <!-- SECTION E: ANYTHING ELSE -->
+        <div class="aq-section">
+          <div class="aq-section-label">
+            <div class="aq-section-index">E</div>
+            <h2>Anything Else?</h2>
+          </div>
+          <div class="aq-field">
+            <textarea name="additional_notes" placeholder="Anything else you'd like Jay to know before your consultation?"></textarea>
+          </div>
+
+          <div class="aq-field">
+            <label class="aq-consent">
+              <input type="checkbox" name="consent" value="Yes, I consent" required>
+              <span>I consent to High Ridge Advisory using this information to review and, where appropriate, update my financial plan or advisory relationship. I understand I can opt out of future contact at any time.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="aq-submit-wrap">
+          <button type="submit">Send My Assessment &rarr;</button>
+          <div class="aq-submit-note">Jay will personally review your responses and reach out within one business day.</div>
+          <div class="aq-disclaimer">This assessment is for informational purposes only and does not constitute investment, tax, or legal advice.</div>
+        </div>
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="images/logo-200.webp" alt="High Ridge Advisory" width="100" height="100">
+          </div>
+          <p>Boutique wealth management providing fiduciary guidance to families and businesses — over 25 years of investment experience.</p>
+          <a href="#" data-booking class="btn btn-ghost btn-small">Book a Consultation</a>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/james-madden-jr-71b70912" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/highridgeadvisory/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/p/High-Ridge-Advisory-61577601039831/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Quick Links</h2>
+          <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="about.html#team">Our Team</a>
+            <a href="contact.html">Contact</a>
+            <a href="client-portal.html">Client Hub</a>
+            <a href="insights.html">Insights</a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Services</h2>
+          <div class="footer-links">
+            <a href="services.html#family">Family Wealth</a>
+            <a href="services.html#business">Business Planning</a>
+            <a href="services.html#investment">Investment Strategy</a>
+          </div>
+        </div>
+
+        <div class="footer-contact">
+          <h2 class="footer-heading">Connect</h2>
+          <div class="footer-contact-items">
+            <p><a href="mailto:info@highridgeadvisory.com" style="display: inline-flex; align-items: center; gap: 16px;"><span class="footer-icon-circle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>info@highridgeadvisory.com</a></p>
+            <p><a href="tel:+19726325700" style="display: inline-flex; align-items: center; gap: 16px;"><span class="footer-icon-circle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>972.632.5700</a></p>
+            <p><a href="https://www.google.com/maps/search/?api=1&query=208+E+Louisiana+Street+Suite+301+McKinney+Texas+75069" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: flex-start; gap: 16px;">
+              <span class="footer-icon-circle" style="margin-top: 2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <span>208 E. Louisiana Street<br>Suite 301<br>McKinney, Texas 75069</span>
+            </a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal">
+        <div class="footer-legal-links">
+          <a href="disclosures.html">Disclosures</a>
+          <a href="https://csenge.com/wp-content/uploads/2025/05/Form-CRS-2025.pdf" target="_blank" rel="noopener noreferrer">Csenge Form CRS</a>
+          <a href="https://csenge.com/wp-content/uploads/2025/05/CAG-ADV-2A.pdf" target="_blank" rel="noopener noreferrer">Csenge Form ADV-2A</a>
+          <a href="https://csenge.com/wp-content/uploads/2025/05/Wrap-Brochure-2025.pdf" target="_blank" rel="noopener noreferrer">Csenge Wrap Brochure</a>
+          <a href="https://csenge.com/wp-content/uploads/2025/05/Privacy-Policy-2025.pdf" target="_blank" rel="noopener noreferrer">Csenge Privacy Policy</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">
+          Investment advisory services are offered through Csenge Advisory Group, LLC (CAG), a registered investment adviser with the SEC. Csenge Advisory Group, LLC (CAG) is not affiliated with High Ridge Advisory.
+        </p>
+        <p class="footer-copyright">
+          &copy; 2026 High Ridge Advisory. All rights reserved.
+        </p>
+        <p class="footer-copyright footer-credit">
+          Site by <a href="https://onwavelab.com/services/websites/" target="_blank" rel="noopener">OnWave Lab</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/booking-modal.js"></script>
+</body>
+</html>
