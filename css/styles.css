@@ -527,8 +527,9 @@ p:last-child {
 }
 
 .nav-logo img {
-  height: 48px;
+  height: 60px;
   width: auto;
+  border-radius: 4px;
 }
 
 .logo-text {
@@ -3049,7 +3050,7 @@ button[type="submit"] .btn-spinner + span {
   }
 
   .nav-logo img {
-    height: 44px;
+    height: 48px;
   }
 
   /* Mobile menu - white text for better visibility */
@@ -3791,10 +3792,6 @@ button[type="submit"] .btn-spinner + span {
 /* ----------------------------------------
    Nav logo
    ---------------------------------------- */
-.nav-logo img {
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
-}
 
 /* ----------------------------------------
    Build credit (footer)
