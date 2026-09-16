@@ -527,7 +527,7 @@ p:last-child {
 }
 
 .nav-logo img {
-  height: 52px;
+  height: 64px;
   width: auto;
 }
 
@@ -3787,16 +3787,11 @@ button[type="submit"] .btn-spinner + span {
 }
 
 /* ----------------------------------------
-   Nav logo: cream background over hero, fades to transparent
-   when navbar transitions to solid (white) state on scroll.
+   Nav logo
    ---------------------------------------- */
 .nav-logo img {
-  background-color: #fdfbf7;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-.navbar.is-scrolled .nav-logo img {
-  background-color: transparent;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
 }
 
 /* ----------------------------------------
