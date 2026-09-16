@@ -127,8 +127,8 @@
   --duration-slower: 700ms;
 
   /* Navigation */
-  --nav-height: 96px;
-  --nav-height-mobile: 80px;
+  --nav-height: 130px;
+  --nav-height-mobile: 100px;
 }
 
 /* ----------------------------------------
@@ -527,7 +527,7 @@ p:last-child {
 }
 
 .nav-logo img {
-  height: 76px;
+  height: 100px;
   width: auto;
   border-radius: 4px;
 }
@@ -3050,7 +3050,7 @@ button[type="submit"] .btn-spinner + span {
   }
 
   .nav-logo img {
-    height: 60px;
+    height: 70px;
   }
 
   /* Mobile menu - white text for better visibility */
