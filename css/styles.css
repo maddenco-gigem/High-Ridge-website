@@ -527,15 +527,17 @@ p:last-child {
 }
 
 .nav-logo img {
-  height: 64px;
+  height: 48px;
   width: auto;
 }
 
 .logo-text {
   font-family: var(--font-heading);
-  font-size: var(--text-xl);
+  font-size: clamp(1.35rem, 1.2rem + 0.75vw, 1.65rem);
   font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--gray-900);
+  line-height: 1;
   transition: color var(--duration-normal) var(--ease-out-cubic);
 }
 
