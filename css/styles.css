@@ -127,8 +127,8 @@
   --duration-slower: 700ms;
 
   /* Navigation */
-  --nav-height: 130px;
-  --nav-height-mobile: 100px;
+  --nav-height: 110px;
+  --nav-height-mobile: 88px;
 }
 
 /* ----------------------------------------
@@ -527,9 +527,8 @@ p:last-child {
 }
 
 .nav-logo img {
-  height: 100px;
+  height: 90px;
   width: auto;
-  border-radius: 4px;
 }
 
 .logo-text {
@@ -3050,7 +3049,7 @@ button[type="submit"] .btn-spinner + span {
   }
 
   .nav-logo img {
-    height: 70px;
+    height: 62px;
   }
 
   /* Mobile menu - white text for better visibility */
@@ -3789,18 +3788,6 @@ button[type="submit"] .btn-spinner + span {
   pointer-events: none;
 }
 
-/* ----------------------------------------
-   Nav logo: cream background over hero, fades to transparent
-   when navbar transitions to solid (white) state on scroll.
-   ---------------------------------------- */
-.nav-logo img {
-  background-color: #fdfbf7;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-.navbar.is-scrolled .nav-logo img {
-  background-color: transparent;
-}
 
 /* ----------------------------------------
    Build credit (footer)
