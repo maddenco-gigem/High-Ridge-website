@@ -3790,8 +3790,17 @@ button[type="submit"] .btn-spinner + span {
 }
 
 /* ----------------------------------------
-   Nav logo
+   Nav logo: cream background over hero, fades to transparent
+   when navbar transitions to solid (white) state on scroll.
    ---------------------------------------- */
+.nav-logo img {
+  background-color: #fdfbf7;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.navbar.is-scrolled .nav-logo img {
+  background-color: transparent;
+}
 
 /* ----------------------------------------
    Build credit (footer)
