@@ -581,7 +581,7 @@ function initFormLoadingStates() {
         e.preventDefault();
         console.log('Bot detected: honeypot filled');
         // Silently fail - don't tell bots why it failed
-        showFormError(form, 'Unable to submit form. Please try again later.');
+        showFormError(form, 'We couldn\'t send your form. Please refresh the page and try again, or call us at 972.632.5700.');
         return;
       }
 
@@ -627,10 +627,10 @@ function showFormError(form, message) {
   const submitButton = form.querySelector('button[type="submit"]');
   submitButton.parentNode.insertBefore(errorDiv, submitButton);
 
-  // Auto-remove after 5 seconds
+  // Auto-remove after 12 seconds
   setTimeout(() => {
     errorDiv.remove();
-  }, 5000);
+  }, 12000);
 }
 
 // ----------------------------------------
