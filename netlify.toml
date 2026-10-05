@@ -98,6 +98,12 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.netlify.app https://*.netlify.com https://tidycal.com https://asset-tidycal.b-cdn.net; frame-src 'self' https://tidycal.com; object-src 'none'; base-uri 'self'; form-action 'self' https://*.netlify.com; upgrade-insecure-requests;"
 
+# Unlisted intake page: keep out of search engines (not in sitemap/robots.txt on purpose)
+[[headers]]
+  for = "/estate-intake-3a5b50df*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
 # Cache images for 3 months with revalidation (may be updated)
 [[headers]]
   for = "/images/*"
